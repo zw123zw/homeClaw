@@ -1,0 +1,22 @@
+{
+  "name": "@homeclaw/homehub",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --experimental-strip-types --experimental-sqlite --watch src/server.ts",
+    "start": "node --experimental-strip-types --experimental-sqlite src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.3.1",
+    "@homeclaw/contracts": "workspace:*",
+    "fastify": "^5.2.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.6.3"
+  }
+}

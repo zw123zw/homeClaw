@@ -1,0 +1,55 @@
+.app { display: flex; height: 100%; overflow: hidden; }
+.sidebar {
+  width: 248px; flex: 0 0 248px;
+  border-right: 1px solid var(--color-border);
+  display: flex; flex-direction: column;
+  background: var(--color-card);
+}
+.sidebar__head {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  display: flex; flex-direction: column; gap: var(--space-sm);
+}
+.brand { font-size: 17px; font-weight: 700; letter-spacing: -.3px; display: flex; align-items: center; gap: var(--space-sm); }
+.brand__mark {
+  width: 26px; height: 26px; border-radius: var(--radius-sm);
+  background: var(--color-accent); color: var(--color-on-accent);
+  display: grid; place-items: center; flex: none;
+}
+.brand__sub { font-size: 11px; color: var(--color-muted-foreground); letter-spacing: .2px; }
+.sidebar__list { flex: 1; overflow-y: auto; padding: var(--space-sm); display: flex; flex-direction: column; gap: 2px; }
+.session-item {
+  min-height: var(--hit-min);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer; border: 1px solid transparent;
+  display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm);
+  text-align: left; background: transparent; color: inherit;
+  transition: background var(--dur-fast) var(--ease);
+}
+.session-item:hover { background: var(--color-muted); }
+.session-item[aria-current="true"] { background: var(--color-muted); border-color: var(--color-accent); }
+.session-item__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.tabs {
+  display: flex; gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  align-items: center; background: var(--color-card);
+}
+.tab {
+  min-height: var(--hit-min); padding: 0 var(--space-md);
+  border-radius: var(--radius-md); cursor: pointer;
+  color: var(--color-muted-foreground);
+  border: 1px solid transparent; background: transparent;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.tab:hover { color: var(--color-foreground); background: var(--color-muted); }
+.tab[aria-selected="true"] { color: var(--color-foreground); background: var(--color-muted); border-color: var(--color-border); }
+.status { margin-left: auto; display: flex; align-items: center; gap: var(--space-sm); font-size: 12px; color: var(--color-muted-foreground); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-muted-foreground); flex: none; }
+.dot.ok { background: var(--color-accent); }
+.dot.warn { background: #F5B547; }
+.dot.err { background: var(--color-destructive); }

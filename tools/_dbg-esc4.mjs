@@ -1,0 +1,27 @@
+﻿import fs from "node:fs"; import path from "node:path"; import { JSDOM } from "jsdom";
+const root = process.cwd(); const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
+const dom = new JSDOM(read("apps/web/dist/index.html"), { url: "app://homeclaw/index.html", runScripts: "outside-only", pretendToBeVisual: true });
+const { window } = dom; const doc = window.document;
+window.__HOMECLAW__ = { gatewayBaseUrl: "http://127.0.0.1:4030", hubBaseUrl: "http://127.0.0.1:4020/v1", hubToken: "dev-user-token" };
+window.__HOMECLAW_PLATFORM__ = { kind: "electron", saveText: async () => true, openExternal: async () => {} };
+window.fetch = (...a) => globalThis.fetch(...a);
+window.Headers = globalThis.Headers; window.Request = globalThis.Request; window.Response = globalThis.Response;
+window.setTimeout = globalThis.setTimeout; window.clearTimeout = globalThis.clearTimeout; window.setInterval = globalThis.setInterval; window.clearInterval = globalThis.clearInterval;
+window.requestAnimationFrame = (cb) => globalThis.setTimeout(() => cb(0), 16);
+window.console = globalThis.console;
+window.matchMedia = window.matchMedia || (() => ({ matches: false, addListener(){}, removeListener(){}, addEventListener(){}, removeEventListener(){} }));
+window.ResizeObserver = window.ResizeObserver || class { observe(){} unobserve(){} disconnect(){} };
+window.eval(read("apps/web/dist-iife/app.js"));
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+await sleep(2500);
+doc.querySelector('.topbar .icon-btn[aria-label="设置"]')?.click(); await sleep(900);
+const dump = (tag) => {
+  const els = [...doc.querySelectorAll(".t-dialog, .t-dialog__ctx")];
+  console.log(tag, "els:", els.map(e => e.className + " | style=" + (e.getAttribute("style")||"") + " | parentDisplay=" + (e.parentElement?.style?.display||"")).join("\n   "));
+};
+dump("after open");
+doc.querySelector(".t-dialog__close")?.click(); await sleep(2000);
+dump("after close");
+console.log("settings nodes:", doc.querySelectorAll(".settings").length);
+console.log("body has 设置 text:", (doc.body.textContent||"").includes("只影响本机界面外观"));
+process.exit(0);

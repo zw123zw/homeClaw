@@ -1,0 +1,21 @@
+{
+  "name": "@homeclaw/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "electron .",
+    "dev:ui": "pnpm --filter @homeclaw/web dev",
+    "start": "electron .",
+    "build": "tsc -p tsconfig.main.json && pnpm --filter @homeclaw/web build",
+    "typecheck": "tsc -p tsconfig.main.json --noEmit"
+  },
+  "dependencies": {
+    "@homeclaw/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "electron": "^33.3.1",
+    "typescript": "^5.6.3"
+  }
+}

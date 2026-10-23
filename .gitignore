@@ -1,0 +1,35 @@
+﻿node_modules/
+dist/
+dist-electron/
+release/
+*.log
+.env
+.env.local
+data/
+.DS_Store
+*.tsbuildinfo
+dist-backend/
+hermes-venv/
+vendor/hermes-agent/
+
+# 本地运行痕迹与缓存
+.agents/
+.logs/
+.npm-cache/
+.pnpm-store/
+.hermes-probe/
+.hermes-probe.tgz
+.tmp-probe/
+.tmp-*
+tmp-*
+*.tgz
+*.bak
+
+# 一次性调试脚本与预览产物
+tools/tmp/
+apps/web/dist-iife/
+
+# 沙箱内 .git 不可写时使用的独立仓库元数据
+.git-alt/
+.git-index-tmp
+.git-store/

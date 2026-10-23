@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HomeClaw · 界面预览</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<a class="sr-only" href="#messages">跳到对话内容</a>
+
+<div id="app" class="app">
+  <aside class="sidebar" aria-label="会话列表">
+    <div class="sidebar__head">
+      <div class="brand"><span class="brand__mark" data-icon="brand"></span>HomeClaw</div>
+      <div class="brand__sub">全屋智能 AI 管家</div>
+      <button class="primary" id="newSession" type="button">
+        <span data-icon="plus"></span>新会话
+      </button>
+    </div>
+    <nav class="sidebar__list" id="sessionList" aria-label="历史会话"></nav>
+  </aside>
+
+  <main class="main">
+    <div class="tabs" role="tablist" aria-label="主导航">
+      <button class="tab" role="tab" data-tab="chat" aria-selected="true" aria-controls="chatPage">
+        <span data-icon="chat"></span>对话
+      </button>
+      <button class="tab" role="tab" data-tab="devices" aria-selected="false" aria-controls="devicesPage">
+        <span data-icon="devices"></span>设备
+      </button>
+      <button class="tab" role="tab" data-tab="scenes" aria-selected="false" aria-controls="scenesPage">
+        <span data-icon="scenes"></span>场景
+      </button>
+      <div class="status" role="status" aria-live="polite" aria-atomic="true">
+        <span class="dot" id="healthDot"></span>
+        <span id="healthText">连接中</span>
+      </div>
+    </div>
+
+    <div class="chat" id="chatPage" role="tabpanel" aria-labelledby="tab-chat">
+      <div class="messages" id="messages" tabindex="-1" aria-live="polite" aria-relevant="additions text"></div>
+      <div class="composer">
+        <label class="sr-only" for="input">输入指令</label>
+        <textarea id="input" rows="1" placeholder="输入指令，Enter 发送 / Shift+Enter 换行"></textarea>
+        <button class="danger" id="stopBtn" type="button" hidden>
+          <span data-icon="stop"></span>停止
+        </button>
+        <button class="primary" id="sendBtn" type="button">
+          <span data-icon="send"></span>发送
+        </button>
+      </div>
+      <div class="conn-note" id="connInfo"></div>
+    </div>
+
+    <div class="page" id="devicesPage" role="tabpanel" aria-labelledby="tab-devices" hidden></div>
+    <div class="page" id="scenesPage" role="tabpanel" aria-labelledby="tab-scenes" hidden></div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="/icons.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
